@@ -4,7 +4,7 @@ local INTERACTION_DISTANCE = 10.0 -- distance d'interaction entre le joueur et l
 local displayTime = 3000 -- affiachage de l'emoji pendant si 1 seconde faire 1000
 local playerPed = PlayerPedId() 
 
---chargement .ytd and emote
+--chargement emote
 RequestAnimDict("mp_player_int_upperwank")
     while not HasAnimDictLoaded("mp_player_int_upperwank") do
         Citizen.Wait(10)
@@ -60,13 +60,13 @@ end
 -- Commande /dice
 RegisterCommand("dice", function()
     local dice_value = math.random(1, 6)
-    local startTime = GetGameTimer()
 
     -- Lecture de l'animation
     TaskPlayAnim(playerPed, "mp_player_int_upperwank", "mp_player_int_wank_01", 8.0, -8.0, 1500, 0, 0, false, false, false)
     Load_file("emoji_de")
-    Citizen.Wait(1500)
+    Citizen.Wait(1000)
 
+    local startTime = GetGameTimer()
     while GetGameTimer() - startTime < displayTime do
         Citizen.Wait(0)
     Display_icon(dice_value, playerPed, "emoji_de","de")
@@ -77,13 +77,13 @@ end, false)
 -- Commande /piece
 RegisterCommand("piece", function()
     local piece_value = math.random(1, 2)
-    local startTime = GetGameTimer()
 
     -- Lecture de l'animation
     TaskPlayAnim(playerPed, "mp_player_int_upperwank", "mp_player_int_wank_01", 8.0, -8.0, 1500, 0, 0, false, false, false)
     Load_file("emoji_piece")
-    Citizen.Wait(1500)
+    Citizen.Wait(1000)
 
+    local startTime = GetGameTimer()
     while GetGameTimer() - startTime < displayTime do
         Citizen.Wait(0)
     Display_icon(piece_value, playerPed, "emoji_piece","piece")
